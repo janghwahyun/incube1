@@ -1,0 +1,319 @@
+/* css/style.css */
+
+/* --- 1. 변수 및 초기화 --- */
+:root {
+  /* 요청하신 브랜드 컬러 */
+  --primary-yellow: rgb(252, 184, 2);
+  --primary-orange: rgb(224, 130, 5);
+
+  /* 안도 타다오 스타일의 브루탈리즘/콘크리트 컬러 */
+  --concrete-dark: #1a1c1e;
+  --concrete-gray: #2d3134;
+  --text-light: #e0e0e0;
+  --text-muted: #8a8d91;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--concrete-dark);
+  color: var(--text-light);
+  font-family: "Pretendard", sans-serif;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+/* --- 2. 헤더 및 미니멀 로고 --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5%;
+  position: absolute; /* 메인 비주얼과 겹치도록 */
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+}
+
+.logo strong {
+  font-weight: 800;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  margin-left: 3rem;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--primary-yellow);
+}
+
+/* --- 3. 황금비율 레이아웃 (1.618 : 1) --- */
+.hero {
+  display: grid;
+  /* 안도 타다오의 공간감을 위해 1.618(빛의 공간) : 1(여백과 텍스트) 적용 */
+  grid-template-columns: 1.618fr 1fr;
+  min-height: 100vh;
+}
+
+/* --- 4. 안도 타다오 '빛의 교회' 콘셉트 시각화 --- */
+.hero-visual {
+  position: relative;
+  background-color: #111;
+  overflow: hidden;
+}
+
+.ando-wall {
+  width: 100%;
+  height: 100%;
+  /* 노출 콘크리트 텍스처 이미지 적용 */
+  background:
+    linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.95)),
+    url("https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2000&auto=format&fit=crop")
+      center/cover;
+  position: relative;
+  box-shadow: inset -50px 0 100px rgba(0, 0, 0, 0.8); /* 깊이감 */
+}
+
+/* 빛이 새어나오는 틈새 공통 스타일 */
+.light-slit {
+  position: absolute;
+  background: #fff; /* 빛의 중심은 하얗게 */
+  /* 노란색과 주황색을 결합한 강력한 후광 효과 (빛의 번짐) */
+  box-shadow:
+    0 0 10px #fff,
+    0 0 30px var(--primary-yellow),
+    0 0 80px var(--primary-yellow),
+    0 0 120px var(--primary-orange),
+    0 0 200px rgba(224, 130, 5, 0.5);
+}
+
+/* 십자가 형태 구현 */
+.vertical {
+  width: 12px;
+  height: 70%;
+  top: 15%;
+  left: 45%; /* 비대칭적인 여백 */
+}
+
+.horizontal {
+  width: 60%;
+  height: 12px;
+  top: 45%;
+  left: 20%;
+}
+
+/* --- 5. 미니멀 텍스트 영역 --- */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 15%;
+  background-color: var(--concrete-dark);
+}
+
+.sub-title {
+  color: var(--primary-yellow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  line-height: 1.3;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 4rem;
+  font-weight: 300;
+}
+
+/* 덜어냄의 미학을 적용한 버튼 */
+.btn-primary {
+  align-self: flex-start;
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--text-muted);
+  padding: 1rem 2.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  border-color: var(--primary-orange);
+  color: var(--primary-orange);
+  box-shadow: 0 0 20px rgba(224, 130, 5, 0.2);
+}
+
+/* --- 6. 서비스 섹션 --- */
+.services {
+  padding: 8rem 5%;
+  background-color: #151618; /* 더 깊은 어둠 */
+}
+
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: 4rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2px; /* 카드를 나누는 얇은 선 */
+  background-color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--concrete-gray);
+  padding: 4rem 3rem;
+  transition: background-color 0.4s ease;
+}
+
+.card:hover {
+  background-color: #222528;
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-yellow); /* 포인트 컬러 */
+}
+
+.card p {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* --- 7. 푸터 영역 --- */
+.footer {
+  background-color: #0a0a0a;
+  padding: 6rem 5% 3rem;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.footer-logo strong {
+  color: var(--text-light);
+}
+
+.footer-slogan {
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.company-info strong {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.company-info p,
+.contact-info p {
+  margin-bottom: 0.8rem;
+  display: flex;
+  color: var(--text-muted);
+}
+
+.company-info span,
+.contact-info span {
+  color: #555;
+  width: 120px;
+  display: inline-block;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #444;
+  padding-top: 2rem;
+}
+
+/* --- 8. 반응형 (모바일) --- */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr; /* 모바일에서는 위아래 배치 */
+    grid-template-rows: 60vh 1fr;
+  }
+
+  .hero-content {
+    padding: 4rem 10%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .vertical {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .horizontal {
+    left: 10%;
+    width: 80%;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}

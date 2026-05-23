@@ -1,0 +1,284 @@
+/* css/style.css */
+
+/* --- 1. 변수 및 초기화 --- */
+:root {
+  --primary-yellow: rgb(252, 184, 2);
+  --primary-orange: rgb(224, 130, 5);
+  --bg-color: #ffffff;
+  --bg-footer: #222222;
+  --text-main: #1a1a1a;
+  --text-muted: #666666;
+  --text-light: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: "Pretendard", sans-serif;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+/* --- 2. 헤더 및 로고 (Less is more) --- */
+.header {
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center; /* 로고와 네비게이션이 붙어 있도록 변경 */
+  align-items: center;
+  padding: 1.5rem 5%;
+  background: rgba(255, 255, 255, 0.98);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: baseline;
+  letter-spacing: 0.02em;
+}
+
+.logo strong {
+  font-weight: 800;
+}
+
+.logo span {
+  font-weight: 300;
+}
+
+.cube-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-orange);
+  margin-left: 4px;
+}
+
+.nav {
+  display: none; /* 메인 4분면으로 메뉴를 대체했으므로 우측 상단 네비게이션은 숨깁니다 */
+}
+
+/* --- 3. 메인 히어로 섹션 (1:1 비율 분할) --- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 정확히 2등분 */
+  /* 화면 전체 높이에서 헤더 높이(약 76px)를 뺀 나머지 꽉 채우기 */
+  height: calc(100vh - 76px);
+  width: 100%;
+}
+
+/* 왼쪽 이미지 영역 */
+.hero-left {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 이미지 위에 아주 옅은 브랜드 컬러 필터 씌우기 (선택사항) */
+.hero-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(252, 184, 2, 0.1),
+    rgba(224, 130, 5, 0.1)
+  );
+  pointer-events: none;
+}
+
+/* 오른쪽 4분면 영역 */
+.hero-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2열 */
+  grid-template-rows: 1fr 1fr; /* 2행 */
+  height: 100%;
+  background-color: var(--bg-color);
+}
+
+.quadrant {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  /* 얇고 정갈한 선으로만 구역을 나눔 */
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* 하단 2개의 박스는 바닥 테두리 제거 */
+.quad-careers,
+.quad-contact {
+  border-bottom: none;
+}
+
+/* 호버 시 배경 필터 (Less is more 스타일에 맞는 은은한 효과) */
+.quadrant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* 브랜드 컬러를 3% 투명도로 아주 연하게 적용 */
+  background: linear-gradient(
+    135deg,
+    rgba(252, 184, 2, 0.03),
+    rgba(224, 130, 5, 0.03)
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.quadrant:hover::before {
+  opacity: 1;
+}
+
+.quad-title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+/* 마우스 올렸을 때 텍스트 효과 */
+.quadrant:hover .quad-title {
+  color: var(--primary-orange); /* 포인트 컬러로 변경 */
+  transform: translateY(-5px); /* 살짝 위로 떠오름 */
+  font-weight: 400;
+}
+
+/* --- 6. 푸터 영역 --- */
+.footer {
+  background-color: var(--bg-footer);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 5rem 5% 2rem;
+  font-size: 0.95rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+
+.footer-logo strong {
+  font-weight: 800;
+}
+.footer-logo span {
+  font-weight: 300;
+}
+
+.footer-slogan {
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.company-info p,
+.contact-info p {
+  margin-bottom: 0.8rem;
+  display: flex;
+}
+
+.company-info strong {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.company-info span,
+.contact-info span {
+  color: rgba(255, 255, 255, 0.4);
+  width: 120px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- 7. 반응형 (모바일 화면) --- */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr; /* 모바일에서는 상하로 분할 */
+    height: auto;
+  }
+
+  .hero-left {
+    height: 50vh; /* 모바일 이미지 높이 지정 */
+  }
+
+  .hero-right {
+    height: 50vh;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .company-info p,
+  .contact-info p {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .company-info span,
+  .contact-info span {
+    margin-bottom: 0.3rem;
+  }
+}

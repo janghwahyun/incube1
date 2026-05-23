@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INCUBE | 혁신을 담는 IT 솔루션</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">
+        <div class="ando-brackets">
+          <div class="logo-text">
+            <span class="c-yellow">I</span>
+            <span class="c-orange">N</span>
+            <span class="c-yellow">C</span>
+            <span class="c-orange">U</span>
+            <span class="c-yellow">B</span>
+            <span class="c-orange">E</span>
+          </div>
+        </div>
+      </a>
+      <nav class="nav"></nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-left">
+        <div class="image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+            alt="INCUBE Wave Visual"
+          />
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <a href="#" class="quadrant quad-about">
+          <span class="quad-title">About</span>
+        </a>
+        <a href="#" class="quadrant quad-services">
+          <span class="quad-title">Services</span>
+        </a>
+        <a href="#" class="quadrant quad-careers">
+          <span class="quad-title">Careers</span>
+        </a>
+        <a href="#" class="quadrant quad-contact">
+          <span class="quad-title">Contact</span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-logo">
+            <span>INCUBE</span>
+            <div
+              class="cube-dot"
+              style="
+                background-color: var(--text-light);
+                width: 4px;
+                height: 4px;
+                margin-left: 2px;
+              "
+            ></div>
+          </div>
+          <div class="footer-slogan"></div>
+        </div>
+        <div class="footer-content">
+          <div class="company-info">
+            <strong>(주)인큐브</strong>
+            <p><span>대표자</span> 백철호</p>
+            <p><span>사업자등록번호</span>315-88-01665</p>
+            <p>
+              <span>주소</span> 경기 용인시 기흥구 서천로201번길 11 (농서동,
+              기흥테라타워지식산업센터) 9층 T-9114호
+            </p>
+          </div>
+          <div class="contact-info">
+            <p><span>TEL</span> ??-???-??</p>
+            <p><span>EMAIL</span> ???@incube.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright">
+            &copy; 2026 INCUBE Co., Ltd. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 'quadrant' 클래스를 가진 4개의 메뉴를 모두 찾습니다.
+        const menuLinks = document.querySelectorAll(".quadrant");
+
+        menuLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault(); // 클릭 시 화면이 위로 튕기는 기본 현상을 막아줍니다.
+            alert("현재 페이지를 준비 중입니다. 🚧");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
