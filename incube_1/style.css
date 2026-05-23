@@ -263,6 +263,17 @@ body {
   font-weight: 300;
 }
 
+/* 1. 푸터 로고의 괄호 테두리 흰색으로 변경 */
+.footer-logo .ando-brackets::before,
+.footer-logo .ando-brackets::after {
+  border-color: var(--text-light);
+}
+
+/* 2. 푸터 로고의 글자(I, N, C, U, B, E) 흰색으로 변경 */
+.footer-logo .logo-text span {
+  color: var(--text-light);
+}
+
 .footer-slogan {
   font-weight: 300;
   letter-spacing: 0.1rem;
