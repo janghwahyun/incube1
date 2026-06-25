@@ -1,0 +1,310 @@
+:root {
+  /* 대표 색상 */
+  --primary-yellow: rgb(252, 184, 2);
+  --primary-orange: rgb(224, 130, 5);
+
+  /* 황금비율 (Golden Ratio) */
+  --phi: 1.618;
+
+  /* [수정] 고급스러운 미드나잇 슬레이트 색상으로 변경 */
+  --bg-color: #0f121a;
+  --text-color: #ffffff;
+  --text-main: #ffffff; /* 안도 브래킷 로고용 메인 텍스트 컬러 */
+  --font-main: "Pretendard", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  /* [수정] 배경 그라데이션 필터를 새로운 베이스 컬러에 맞춰 은은하게 변경 */
+  background:
+    linear-gradient(rgba(15, 18, 26, 0.75), rgba(15, 18, 26, 0.9)),
+    url("https://media.giphy.com/media/26hisaEfa3E8uLh4c/giphy.gif")
+      center/cover no-repeat fixed;
+}
+
+/* --- 헤더 및 안도 타다오 스타일 로고 --- */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 100;
+}
+
+.logo {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ando-brackets {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+}
+
+.ando-brackets::before,
+.ando-brackets::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  transition: border-color 0.4s ease;
+}
+
+/* 테두리를 얇은 먹선으로 표현하여 건축 도면 같은 안도 타다오 스타일 연출 */
+.ando-brackets::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--text-main);
+  border-left: 1px solid var(--text-main);
+}
+
+.ando-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--text-main);
+  border-right: 1px solid var(--text-main);
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  display: flex;
+}
+
+.logo-text span:last-child {
+  letter-spacing: 0;
+}
+
+.logo-text span {
+  color: var(--text-main);
+  transition: color 0.4s ease;
+}
+
+/* 로고 호버 인터랙션 */
+.logo:hover .ando-brackets::before,
+.logo:hover .ando-brackets::after {
+  border-color: var(--primary-yellow);
+}
+
+.logo:hover .c-yellow {
+  color: var(--primary-yellow);
+}
+
+.logo:hover .c-orange {
+  color: var(--primary-orange);
+}
+
+/* --- 메인 인터랙션 영역 --- */
+.main-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+/* 황금비율을 활용한 철자 간격 세팅 */
+.incube-letters {
+  display: flex;
+  gap: calc(2vw * var(--phi));
+  position: relative;
+  z-index: 20;
+}
+
+.letter-group {
+  display: flex;
+  align-items: center;
+  font-size: calc(3rem * var(--phi));
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    color calc(0.3s * var(--phi)) ease,
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.letter-group .char {
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+/* BE 스펠링 내부 간격 조정 (기본 INCUBE 상태일 때) */
+.char.e-char {
+  margin-left: calc(2vw * var(--phi));
+  transition: margin-left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 호버 시 대표 색상 적용 (번갈아가며) */
+.letter-group:nth-child(odd):hover {
+  color: var(--primary-yellow);
+}
+.letter-group:nth-child(even):hover {
+  color: var(--primary-orange);
+}
+
+/* 숨겨진 나머지 스펠링 영역 */
+.rest-word {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  transition:
+    max-width calc(0.5s * var(--phi)) cubic-bezier(0.25, 1, 0.5, 1),
+    opacity calc(0.4s * var(--phi)) ease;
+  color: #ffffff;
+}
+
+/* 인터랙션 상태 관리 클래스 */
+.letter-group.active {
+  color: var(--primary-yellow);
+  transform: scale(1.1);
+}
+.letter-group.active:nth-child(even) {
+  color: var(--primary-orange);
+}
+
+/* BENEFITS로 활성화되었을 때 B와 E 사이의 간격을 완벽히 붙여줌 */
+.letter-group.active .char.e-char {
+  margin-left: 0;
+}
+
+.letter-group.active .rest-word {
+  max-width: 800px;
+  opacity: 1;
+  margin-left: 2px;
+}
+.letter-group.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  position: absolute;
+}
+
+/* --- 콘텐츠 영역 --- */
+.content-display {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all calc(0.4s * var(--phi)) ease;
+  pointer-events: none;
+  z-index: 20;
+}
+.content-display.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.content-panel {
+  display: none;
+  /* [수정] 새 배경색 위에서 더 은은하게 빛나도록 글래스모피즘 밀도 수정 */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.content-panel.active {
+  display: block;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.content-panel h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--primary-yellow);
+}
+.content-panel p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+}
+.content-panel .highlight {
+  font-weight: 700;
+  color: #fff;
+}
+
+.company-info-text {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+.job-link-text {
+  margin-top: 20px;
+}
+.job-link-text a {
+  color: var(--primary-orange);
+  text-decoration: none;
+  border-bottom: 1px solid var(--primary-orange);
+  padding-bottom: 2px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 바깥 영역 클릭을 위한 오버레이 */
+.click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  display: none;
+  cursor: default;
+}
+.click-overlay.active {
+  display: block;
+}
+
+/* 안내 문구 */
+.guide-text {
+  position: absolute;
+  bottom: 50px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  opacity: 0.4;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

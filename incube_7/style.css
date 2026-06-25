@@ -1,0 +1,384 @@
+:root {
+  /* 대표 색상 */
+  --primary-yellow: rgb(252, 184, 2);
+  --primary-orange: rgb(224, 130, 5);
+
+  /* 황금비율 (Golden Ratio) */
+  --phi: 1.618;
+
+  /* 프리미엄 웜 알라바스터 크림 */
+  --bg-color: #f6f5f2;
+  --text-color: #1d1d1f;
+  --text-main: #1d1d1f;
+  --font-main: "Pretendard", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+/* 고화질 항공 파도 영상 백그라운드 레이아웃 스타일 */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(246, 245, 242, 0.86),
+    rgba(246, 245, 242, 0.92)
+  );
+}
+
+/* --- 헤더 및 안도 타다오 스타일 로고 --- */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 100;
+}
+
+.logo {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ando-brackets {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+}
+
+.ando-brackets::before,
+.ando-brackets::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transition: border-color 0.4s ease;
+}
+
+.ando-brackets::before {
+  top: 0;
+  left: 0;
+  border-top: 3px solid var(--text-main);
+  border-left: 3px solid var(--text-main);
+}
+
+.ando-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 3px solid var(--text-main);
+  border-right: 3px solid var(--text-main);
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  display: flex;
+}
+
+.logo-text span:last-child {
+  letter-spacing: 0;
+}
+
+.logo-text span {
+  color: var(--text-main);
+  transition: color 0.4s ease;
+}
+
+.logo:hover .ando-brackets::before,
+.logo:hover .ando-brackets::after {
+  border-color: var(--primary-orange);
+}
+.logo:hover .c-yellow {
+  color: var(--primary-yellow);
+}
+.logo:hover .c-orange {
+  color: var(--primary-orange);
+}
+
+/* --- 메인 인터랙션 영역 --- */
+.main-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+/* 메인 중앙 로고용 대형 안도 타다오 브래킷 디자인 */
+.main-ando-brackets {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: calc(1.2rem * var(--phi)) calc(2.2rem * var(--phi));
+  /* ★ [수정] 클릭 시 이동하는 코드 제거 및 초기 위치를 고정적으로 위로 올림 */
+  transform: translateY(-80px);
+  transition: border-color 0.4s ease;
+}
+
+.main-ando-brackets::before,
+.main-ando-brackets::after {
+  content: "";
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  transition: border-color 0.4s ease;
+}
+
+.main-ando-brackets::before {
+  top: 0;
+  left: 0;
+  border-top: 4px solid var(--text-main);
+  border-left: 4px solid var(--text-main);
+}
+
+.main-ando-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid var(--text-main);
+  border-right: 4px solid var(--text-main);
+}
+
+/* 내부 글자 호버/클릭 시 굵은 꺾쇠 색상 동기화 */
+.main-ando-brackets:has(.letter-group:nth-child(odd):hover)::before,
+.main-ando-brackets:has(.letter-group:nth-child(odd):hover)::after,
+.main-ando-brackets:has(.letter-group:nth-child(odd).active)::before,
+.main-ando-brackets:has(.letter-group:nth-child(odd).active)::after {
+  border-color: var(--primary-yellow);
+}
+
+.main-ando-brackets:has(.letter-group:nth-child(even):hover)::before,
+.main-ando-brackets:has(.letter-group:nth-child(even):hover)::after,
+.main-ando-brackets:has(.letter-group:nth-child(even).active)::before,
+.main-ando-brackets:has(.letter-group:nth-child(even).active)::after {
+  border-color: var(--primary-orange);
+}
+
+/* 메인 내부 스펠링 레이아웃 */
+.incube-letters {
+  display: flex;
+  gap: calc(2vw * var(--phi));
+  position: relative;
+  z-index: 20;
+}
+
+.letter-group {
+  display: flex;
+  align-items: center;
+  font-size: calc(3rem * var(--phi));
+  font-weight: 900;
+  cursor: pointer;
+  color: var(--text-main);
+  transition:
+    color calc(0.3s * var(--phi)) ease,
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.letter-group .char {
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.char.e-char {
+  margin-left: calc(2vw * var(--phi));
+  transition: margin-left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.letter-group:nth-child(odd):hover {
+  color: var(--primary-yellow);
+}
+.letter-group:nth-child(even):hover {
+  color: var(--primary-orange);
+}
+
+.rest-word {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  transition:
+    max-width calc(0.5s * var(--phi)) cubic-bezier(0.25, 1, 0.5, 1),
+    opacity calc(0.4s * var(--phi)) ease;
+  color: var(--text-main);
+}
+
+.letter-group.active {
+  color: var(--primary-yellow);
+  transform: scale(1.05);
+}
+.letter-group.active:nth-child(even) {
+  color: var(--primary-orange);
+}
+
+.letter-group.active .char.e-char {
+  margin-left: 0;
+}
+
+.letter-group.active .rest-word {
+  max-width: 800px;
+  opacity: 1;
+  margin-left: 2px;
+}
+.letter-group.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  position: absolute;
+}
+
+/* --- [수정] 콘텐츠 출력 영역 정적 레이아웃 최적화 --- */
+.content-display {
+  position: absolute;
+  top: 45%; /* ★ 위로 올라간 로고 바로 아랫선에 맞춰 정적 배치 */
+  left: 50%;
+  width: calc(100% - 80px);
+  max-width: 800px;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 25px);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* 활성화 상태일 때 위치값 제어 */
+.content-display.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.content-panel {
+  display: none;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(25px);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.02);
+}
+.content-panel.active {
+  display: block;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.content-panel h2 {
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+  color: var(--primary-orange);
+}
+.content-panel p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #424245;
+  margin-bottom: 10px;
+}
+.content-panel .highlight {
+  font-weight: 700;
+  color: #000000;
+}
+
+.company-info-text {
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: #86868b;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  padding-top: 20px;
+}
+.job-link-text {
+  margin-top: 24px;
+}
+.job-link-text a {
+  color: var(--primary-orange);
+  text-decoration: none;
+  border-bottom: 1px solid var(--primary-orange);
+  padding-bottom: 2px;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 바깥 영역 클릭을 위한 오버레이 */
+.click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  display: none;
+  cursor: default;
+}
+.click-overlay.active {
+  display: block;
+}
+
+/* 안내 문구 */
+.guide-text {
+  position: absolute;
+  bottom: 50px;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  opacity: 0.4;
+  color: var(--text-main);
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}

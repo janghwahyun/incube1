@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INCUBE | 혁신을 담는 IT 솔루션</title>
+
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">
+        <div class="ando-brackets">
+          <div class="logo-text">
+            <span class="c-yellow">I</span>
+            <span class="c-orange">N</span>
+            <span class="c-yellow">C</span>
+            <span class="c-orange">U</span>
+            <span class="c-yellow">B</span>
+            <span class="c-orange">E</span>
+          </div>
+        </div>
+      </a>
+      <nav class="nav"></nav>
+    </header>
+
+    <div class="main-container">
+      <div class="click-overlay"></div>
+
+      <div class="incube-letters">
+        <div class="letter-group" data-target="panel-identity">
+          <span class="char">I</span><span class="rest-word">DENTITY</span>
+        </div>
+        <div class="letter-group" data-target="panel-network">
+          <span class="char">N</span><span class="rest-word">ETWORK</span>
+        </div>
+        <div class="letter-group" data-target="panel-career">
+          <span class="char">C</span><span class="rest-word">AREER</span>
+        </div>
+        <div class="letter-group" data-target="panel-us">
+          <span class="char">U</span><span class="rest-word">S</span>
+        </div>
+        <div class="letter-group" data-target="panel-benefits">
+          <span class="char">B</span><span class="char e-char">E</span
+          ><span class="rest-word">NEFITS</span>
+        </div>
+      </div>
+
+      <div class="content-display">
+        <div class="content-panel" id="panel-identity">
+          <h2>IDENTITY</h2>
+          <p>
+            <span class="highlight">(주)인큐브</span>는 응용 소프트웨어 개발 및
+            시스템 통합(SI) 전문 중소기업입니다.
+          </p>
+          <p>
+            복잡한 비즈니스 환경 속에서 가장 명확하고 단단한 IT 인프라를
+            구축합니다.
+          </p>
+          <p class="company-info-text">
+            대표자: 백철호 | 설립일: 2020년 1월 2일<br />
+            주요 사업: 응용 SW 개발 및 공급, 빅데이터 분석, 시스템 관리
+          </p>
+        </div>
+
+        <div class="content-panel" id="panel-network">
+          <h2>NETWORK</h2>
+          <p>최고의 기업들과 연결되어 핵심 인프라를 지탱합니다.</p>
+          <p>
+            주로 <span class="highlight">대기업(특히 반도체 관련 부문)</span>에
+            특화된 빅데이터 기술 지원 및<br />고도화된 시스템 통합(SI) 서비스를
+            제공하며 비즈니스 네트워크를 확장하고 있습니다.
+          </p>
+        </div>
+
+        <div class="content-panel" id="panel-career">
+          <h2>CAREER</h2>
+          <p>우리가 남겨온 궤적이 곧 산업의 표준이 됩니다.</p>
+          <p>
+            대용량 엔터프라이즈 환경에서의 데이터 수집/분석, <br />이기종 환경의
+            복잡한 시스템 유기적 연동 및 통합 프로젝트를 성공적으로 수행해
+            왔습니다.
+          </p>
+        </div>
+
+        <div class="content-panel" id="panel-us">
+          <h2>US</h2>
+          <p>
+            Less is More. 불필요한 것을 덜어내고 본질에 집중하는 사람들입니다.
+          </p>
+          <p>
+            혁신을 두려워하지 않고, 데이터의 정밀함을 다루는
+            <span class="highlight">인큐브의 팀</span>은<br />서로의 성장을 돕고
+            한계를 넘어서는 전문가 집단입니다.
+          </p>
+        </div>
+
+        <div class="content-panel" id="panel-benefits">
+          <h2>BENEFITS</h2>
+          <p>인큐브와 함께 성장할 혁신적인 인재를 기다립니다.</p>
+          <p>
+            위치: 경기도 용인시 기흥구 서천로201번길 11,
+            기흥테라타워지식산업센터
+          </p>
+          <p class="job-link-text">
+            채용 정보 및 기업 재무 평가 등급은 <br />
+            <a
+              href="https://www.jobkorea.co.kr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >잡코리아 인큐브 정보</a
+            >에서 확인하실 수 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="guide-text">Click any letter to explore</div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const letterGroups = document.querySelectorAll(".letter-group");
+        const contentDisplay = document.querySelector(".content-display");
+        const panels = document.querySelectorAll(".content-panel");
+        const clickOverlay = document.querySelector(".click-overlay");
+        const guideText = document.querySelector(".guide-text");
+
+        letterGroups.forEach((group) => {
+          group.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            // 1. 초기화
+            letterGroups.forEach((g) => {
+              g.classList.remove("active", "hidden");
+              g.style.position = "relative";
+            });
+            panels.forEach((p) => p.classList.remove("active"));
+
+            // 2. 클릭 요소 활성화 & 나머지 숨기기
+            group.classList.add("active");
+            letterGroups.forEach((g) => {
+              if (g !== group) {
+                g.classList.add("hidden");
+                setTimeout(() => {
+                  if (g.classList.contains("hidden"))
+                    g.style.position = "absolute";
+                }, 400);
+              }
+            });
+
+            // 3. 연관 패널 띄우기
+            const targetId = group.getAttribute("data-target");
+            document.getElementById(targetId).classList.add("active");
+            contentDisplay.classList.add("show");
+
+            // 4. 오버레이 활성화 & 가이드 숨기기
+            clickOverlay.classList.add("active");
+            guideText.style.opacity = "0";
+          });
+        });
+
+        // 바깥(오버레이) 클릭 시 메인 복귀
+        clickOverlay.addEventListener("click", () => {
+          contentDisplay.classList.remove("show");
+          panels.forEach((p) => p.classList.remove("active"));
+
+          letterGroups.forEach((g) => {
+            g.style.position = "relative";
+            g.classList.remove("active", "hidden");
+          });
+
+          clickOverlay.classList.remove("active");
+          guideText.style.opacity = "0.5";
+        });
+      });
+    </script>
+  </body>
+</html>
